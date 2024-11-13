@@ -33,7 +33,26 @@ public:
         }
         return result;
     }
+
+    ListNode* twoPointers(ListNode *head) {
+        if(head == NULL) return head;
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+
+        while(slow != NULL && fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next;
+            if(fast != NULL && fast->next != NULL) {
+                fast = fast->next;
+            }
+        }
+
+        return slow;
+    }
     ListNode* middleNode(ListNode* head) {
-        return iterate(head);
+        // return iterate(head);
+        return twoPointers(head);
     }
 };
