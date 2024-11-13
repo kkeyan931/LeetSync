@@ -26,7 +26,24 @@ public:
         }
         return false;
     }
+
+    bool usingMap(ListNode *head) {
+        
+        if(head == NULL) return false;
+
+        unordered_map<ListNode*, bool> tracker;
+
+        while(head != NULL) {
+            if(tracker[head] == true) return true;
+            tracker[head] = true;
+            head = head->next;
+        }
+        return false;
+
+
+    }
     bool hasCycle(ListNode *head) {
-        return twoRabbit(head);
+        // return twoRabbit(head);
+        return usingMap(head);
     }
 };
