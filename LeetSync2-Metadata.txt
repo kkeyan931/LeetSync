@@ -1,2 +1,3 @@
 217-contains-duplicate|Easy|1730658600000
 70-climbing-stairs|Easy|1731349800000
+121-best-time-to-buy-and-sell-stock|Easy|1731436200000
