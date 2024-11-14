@@ -3,3 +3,4 @@
 121-best-time-to-buy-and-sell-stock|Easy|1731436200000
 141-linked-list-cycle|Easy|1731436200000
 876-middle-of-the-linked-list|Easy|1731522600000
+206-reverse-linked-list|Easy|1731522600000
