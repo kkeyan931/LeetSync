@@ -33,7 +33,23 @@ public:
         back->next = NULL;
         return newHead;
     }
+    ListNode* usingTwoPointers(ListNode* head) {
+        if(head == NULL || head->next == NULL) return head;
+
+        ListNode* fast = head;
+        ListNode* slow = NULL;
+
+        while(fast != NULL) {
+            head = fast->next;
+            fast->next = slow;
+            slow = fast;
+            fast = head;
+        }
+
+        return slow;
+    }
     ListNode* reverseList(ListNode* head) {
-        return usingTracker(head);
+        // return usingTracker(head);
+        return usingTwoPointers(head);
     }
 };
