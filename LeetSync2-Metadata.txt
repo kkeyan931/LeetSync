@@ -4,3 +4,4 @@
 141-linked-list-cycle|Easy|1731436200000
 876-middle-of-the-linked-list|Easy|1731522600000
 206-reverse-linked-list|Easy|1731522600000
+21-merge-two-sorted-lists|Easy|1735756200000
