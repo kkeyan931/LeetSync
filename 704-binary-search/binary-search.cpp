@@ -23,7 +23,7 @@ public:
         else return recursion(nums, target, start, mid-1);
     }
     int search(vector<int>& nums, int target) {
-        return iteration(nums, target);
-        // return recursion(nums, target, 0, nums.size()-1);
+        // return iteration(nums, target);
+        return recursion(nums, target, 0, nums.size()-1);
     }
 };
