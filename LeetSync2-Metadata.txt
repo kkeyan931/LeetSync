@@ -8,3 +8,4 @@
 83-remove-duplicates-from-sorted-list|Easy|1735842600000
 704-binary-search|Easy|1735929000000
 7-reverse-integer|Medium|1736361000000
+9-palindrome-number|Easy|1736447400000
