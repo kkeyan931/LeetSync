@@ -12,8 +12,6 @@ public:
             if (i > maxReach)
                 return false;
             maxReach = max(maxReach, nums[i] + i);
-            if (maxReach >= n - 1)
-                return true;
         }
         return true;
     }
