@@ -16,3 +16,4 @@
 26-remove-duplicates-from-sorted-array|Easy|1736620200000
 189-rotate-array|Medium|1736620200000
 283-move-zeroes|Easy|1736620200000
+268-missing-number|Easy|1736620200000
