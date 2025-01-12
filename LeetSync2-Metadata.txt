@@ -12,3 +12,4 @@
 55-jump-game|Medium|1736533800000
 125-valid-palindrome|Easy|1736533800000
 509-fibonacci-number|Easy|1736533800000
+1752-check-if-array-is-sorted-and-rotated|Easy|1736620200000
