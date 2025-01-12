@@ -1,36 +1,19 @@
 class Solution {
 public:
-    int getNonZeroIndex(vector<int> &nums, int i) {
-        while(i<nums.size()) {
-            if(nums[i] != 0) return i;
-            i++;
-        }
-        return -1;
-    }
-    void swap(vector<int> &nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
     void moveZeroes(vector<int>& nums) {
 
-     int n = nums.size();
-     if(n == 1) return;
+        int n = nums.size();
 
-     int i = 0;
+        int i = 0, j = 0;
+        while (j < n) {
 
-     while(i<n) {
-        if(nums[i] != 0) {
-            ++i;
-        } else {
-            int nonZeroIndex = getNonZeroIndex(nums, i+1);
-            if(nonZeroIndex != -1) {
-                swap(nums, i, nonZeroIndex);
-                ++i;
+            if (nums[j] != 0) {
+                swap(nums[i], nums[j]);
+                i++;
+                j++;
             } else {
-                break;
+                j++;
             }
         }
-     }
     }
 };
