@@ -15,3 +15,4 @@
 1752-check-if-array-is-sorted-and-rotated|Easy|1736620200000
 26-remove-duplicates-from-sorted-array|Easy|1736620200000
 189-rotate-array|Medium|1736620200000
+283-move-zeroes|Easy|1736620200000
