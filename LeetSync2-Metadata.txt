@@ -18,3 +18,4 @@
 283-move-zeroes|Easy|1736620200000
 268-missing-number|Easy|1736620200000
 485-max-consecutive-ones|Easy|1736620200000
+1-two-sum|Easy|1736706600000
