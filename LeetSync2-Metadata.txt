@@ -21,3 +21,4 @@
 1-two-sum|Easy|1736706600000
 75-sort-colors|Medium|1736879400000
 169-majority-element|Easy|1736879400000
+53-maximum-subarray|Medium|1736879400000
