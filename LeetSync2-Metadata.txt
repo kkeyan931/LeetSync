@@ -23,3 +23,4 @@
 169-majority-element|Easy|1736879400000
 53-maximum-subarray|Medium|1736879400000
 2149-rearrange-array-elements-by-sign|Medium|1736879400000
+73-set-matrix-zeroes|Medium|1736879400000
