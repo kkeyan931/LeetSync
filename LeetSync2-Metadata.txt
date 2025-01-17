@@ -25,3 +25,4 @@
 2149-rearrange-array-elements-by-sign|Medium|1736879400000
 73-set-matrix-zeroes|Medium|1736879400000
 54-spiral-matrix|Medium|1736879400000
+48-rotate-image|Medium|1737052200000
