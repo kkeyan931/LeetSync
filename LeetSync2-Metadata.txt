@@ -31,3 +31,4 @@
 229-majority-element-ii|Medium|1737052200000
 15-3sum|Medium|1737052200000
 18-4sum|Medium|1737052200000
+493-reverse-pairs|Hard|1737052200000
