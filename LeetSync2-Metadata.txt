@@ -26,3 +26,4 @@
 73-set-matrix-zeroes|Medium|1736879400000
 54-spiral-matrix|Medium|1736879400000
 48-rotate-image|Medium|1737052200000
+128-longest-consecutive-sequence|Medium|1737052200000
