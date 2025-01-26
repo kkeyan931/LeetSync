@@ -35,3 +35,4 @@
 152-maximum-product-subarray|Medium|1737225000000
 56-merge-intervals|Medium|1737225000000
 35-search-insert-position|Easy|1737829800000
+34-find-first-and-last-position-of-element-in-sorted-array|Medium|1737829800000
