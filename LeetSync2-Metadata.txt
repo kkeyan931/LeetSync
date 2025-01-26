@@ -34,3 +34,4 @@
 493-reverse-pairs|Hard|1737052200000
 152-maximum-product-subarray|Medium|1737225000000
 56-merge-intervals|Medium|1737225000000
+35-search-insert-position|Easy|1737829800000
