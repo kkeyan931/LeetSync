@@ -39,3 +39,4 @@
 33-search-in-rotated-sorted-array|Medium|1737829800000
 81-search-in-rotated-sorted-array-ii|Medium|1737916200000
 153-find-minimum-in-rotated-sorted-array|Medium|1737916200000
+540-single-element-in-a-sorted-array|Medium|1738002600000
