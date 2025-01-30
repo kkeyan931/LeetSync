@@ -42,3 +42,4 @@
 540-single-element-in-a-sorted-array|Medium|1738002600000
 162-find-peak-element|Medium|1738089000000
 875-koko-eating-bananas|Medium|1738175400000
+1482-minimum-number-of-days-to-make-m-bouquets|Medium|1738175400000
