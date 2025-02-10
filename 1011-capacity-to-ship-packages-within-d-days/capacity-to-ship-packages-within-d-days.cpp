@@ -16,16 +16,18 @@ public:
             }
         }
         if(weightAccumulator > capacity) return false;
+
         return countDays <= days;
     }
     int shipWithinDays(vector<int>& weights, int days) {
 
         long long sum = accumulate(weights.begin(), weights.end(), 0);
+        int max = *max_element(weights.begin(), weights.end());
         if (days == 1) {
             return sum;
         }
 
-        long long start = 1, end = sum;
+        long long start = max, end = sum;
 
         long long minCapacity = sum;
         while (start <= end) {
