@@ -5,17 +5,15 @@ public:
         int countDays = 1, weightAccumulator = 0;
         for (auto& weight : weights) {
 
-            if (weightAccumulator > capacity)
-                return false;
-
             if (weightAccumulator + weight <= capacity) {
                 weightAccumulator += weight;
             } else {
                 countDays++;
                 weightAccumulator = weight;
             }
+            if (weightAccumulator > capacity)
+                return false;
         }
-        if(weightAccumulator > capacity) return false;
 
         return countDays <= days;
     }
@@ -30,12 +28,12 @@ public:
         long long start = max, end = sum;
 
         long long minCapacity = sum;
-        while (start <= end) {
-            long long mid = start + ((end - start) / 2);
+        while (start < end) {
+            long long mid = (start + end)/2;
 
             if (canShip(weights, mid, days)) {
                 minCapacity = min(minCapacity, mid);
-                end = mid - 1;
+                end = mid;
             } else {
                 start = mid + 1;
             }
