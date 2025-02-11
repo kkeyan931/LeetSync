@@ -46,3 +46,4 @@
 1283-find-the-smallest-divisor-given-a-threshold|Medium|1738261800000
 1011-capacity-to-ship-packages-within-d-days|Medium|1739125800000
 1552-magnetic-force-between-two-balls|Medium|1739212200000
+410-split-array-largest-sum|Hard|1739212200000
