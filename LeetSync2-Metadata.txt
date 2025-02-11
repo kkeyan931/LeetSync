@@ -48,3 +48,4 @@
 1552-magnetic-force-between-two-balls|Medium|1739212200000
 410-split-array-largest-sum|Hard|1739212200000
 4-median-of-two-sorted-arrays|Hard|1739212200000
+1539-kth-missing-positive-number|Easy|1739298600000
