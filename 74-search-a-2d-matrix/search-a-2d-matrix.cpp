@@ -1,7 +1,6 @@
 class Solution {
 public:
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        
+    bool binarySearch(vector<vector<int>>& matrix, int target) {
         int n = matrix.size();
         int m = matrix[0].size();
 
@@ -23,5 +22,27 @@ public:
             }
         }
         return false;
+    }
+
+    bool travarseAndEliminate(vector<vector<int>>& matrix, int target) {
+        int noOfRows = matrix.size(); // row
+        int noOfColumns = matrix[0].size(); // column
+
+        int row = 0, column = noOfColumns-1;
+
+        while(row < noOfRows && column >= 0) {
+            if(matrix[row][column] == target) return true;
+            
+            if(target < matrix[row][column]) {
+                column--;
+            } else {
+                row++;
+            }
+        }
+        return false;
+    }
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        //return binarySearch(matrix, target);
+        return travarseAndEliminate(matrix, target);
     }
 };
