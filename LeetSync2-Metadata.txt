@@ -51,3 +51,4 @@
 1539-kth-missing-positive-number|Easy|1739298600000
 74-search-a-2d-matrix|Medium|1739298600000
 240-search-a-2d-matrix-ii|Medium|1739298600000
+237-delete-node-in-a-linked-list|Medium|1739298600000
