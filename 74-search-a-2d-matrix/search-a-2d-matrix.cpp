@@ -4,14 +4,13 @@ public:
         int n = matrix.size();
         int m = matrix[0].size();
 
-        int start = 1, end = n*m;
+        int start = 0, end = (n*m) -1;
 
         while(start<=end) {
             int mid = (start + end) / 2;
 
-            int row = ceil((double)mid/(double)m) - 1;
-            int column = (mid % m) - 1;
-            column = column < 0 ? m - 1 : column;
+            int row = mid/m;
+            int column = mid % m;
 
             if(matrix[row][column] == target) return true;
 
@@ -42,7 +41,7 @@ public:
         return false;
     }
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        //return binarySearch(matrix, target);
-        return travarseAndEliminate(matrix, target);
+        return binarySearch(matrix, target);
+        // return travarseAndEliminate(matrix, target);
     }
 };
