@@ -1,38 +1,48 @@
 class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        int n = matrix.size();
-        int m = matrix[0].size();
+    vector<int> spiralOrder(vector<vector<int>>& arr) {
 
-        int top = 0, bottom = n-1;
-        int left = 0, right = m-1;
+        int m = arr.size();
+        int n = arr[0].size();
 
-        vector<int> result(n*m);
-        int index=0;
-        while(left<=right && top<=bottom) {
-            for(int i=left;i<=right;++i) {
-                result[index++] = matrix[top][i];
-            }
-            top++;
-            for(int i=top;i<=bottom;++i) {
-                result[index++] = matrix[i][right];
-            }
-            right--;
-            
-            if(top<=bottom) {
-                for(int i=right;i>=left;--i) {
-                    result[index++] = matrix[bottom][i];
+        vector<int> result(m * n);
+        int index = 0;
+
+        int direction = 0;
+
+        int top = 0;
+        int left = 0;
+        int down = m - 1;
+        int right = n - 1;
+
+        while (top <= down && left <= right) {
+
+            if (direction == 0) {
+                for (int i = left; i <= right; ++i) {
+                    result[index++] = arr[top][i];
                 }
-                bottom--;
+                top++;
             }
-            if(left<=right) {
-                for(int i=bottom;i>=top;--i) {
-                    result[index++] = matrix[i][left];
+            if (direction == 1) {
+                for (int i = top; i <= down; i++) {
+                    result[index++] = arr[i][right];
+                }
+                right--;
+            }
+            if (direction == 2) {
+                for (int i = right; i >= left; i--) {
+                    result[index++] = arr[down][i];
+                }
+                down--;
+            }
+            if (direction == 3) {
+                for (int i = down; i >= top; i--) {
+                    result[index++] = arr[i][left];
                 }
                 left++;
             }
+            direction = (direction + 1) % 4;
         }
-
         return result;
     }
 };
