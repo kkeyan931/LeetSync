@@ -6,15 +6,16 @@ public:
             result.push_back(temp);
             return;
         }
+        
         temp.push_back(nums[index]);
         rec(result, temp, nums, index+1);
         temp.pop_back();
-        for(int i = index + 1 ; i < nums.size(); ++i) {
-            if(nums[index] != nums[i]) {
-                return rec(result, temp, nums, i);
-            }
+        
+        while(index + 1 < nums.size() && nums[index] == nums[index+1]) {
+            index++;
         }
-        rec(result, temp, nums, nums.size());
+
+        rec(result, temp, nums, index + 1);
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(), nums.end());
