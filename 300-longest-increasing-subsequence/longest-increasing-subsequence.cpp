@@ -19,10 +19,31 @@ public:
 
         return dp[index][prev_index + 1] = max(include, exclude);
     }
-    int lengthOfLIS(vector<int>& nums) {
+
+    int mem(vector<int>& nums) {
         int n = nums.size();
 
         vector<vector<int>> dp(n, vector<int>(n + 1, -1));
         return rec(nums, dp, 0, -1);
+    }
+    int table(vector<int>& nums) {
+        int n = nums.size();
+
+        vector<int> dp(n, 1);
+        int maxi = 1;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
+            maxi = max(maxi, dp[i]);
+        }
+
+        return maxi;
+    }
+    int lengthOfLIS(vector<int>& nums) { 
+        // return mem(nums); 
+        return table(nums);
     }
 };
