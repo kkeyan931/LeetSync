@@ -42,8 +42,21 @@ public:
 
         return maxi;
     }
-    int lengthOfLIS(vector<int>& nums) { 
-        // return mem(nums); 
-        return table(nums);
+    int binarySearch(vector<int>& nums) {
+        vector<int> temp;
+        for (auto num : nums) {
+            auto it = lower_bound(temp.begin(), temp.end(), num);
+            if (it == temp.end()) {
+                temp.push_back(num);
+            } else {
+                *it = num;
+            }
+        }
+        return temp.size();
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        // return mem(nums);
+        // return table(nums);
+        return binarySearch(nums);
     }
 };
