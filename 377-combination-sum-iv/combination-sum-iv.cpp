@@ -51,7 +51,7 @@ public:
         return dp[target];
     }
     int combinationSum4(vector<int>& nums, int target) {
-        return mem(nums, target);
-        // return table(nums, target);
+        // return mem(nums, target);
+        return table(nums, target);
     }
 };
