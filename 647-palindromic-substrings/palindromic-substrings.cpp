@@ -25,9 +25,34 @@ public:
         return count + countPalindromes(s, start, end + 1);
     }
 
-    int countSubstrings(string s) {
+    int mem(string& s) {
         n = s.size();
         dp.assign(n, vector<int>(n, -1)); // Memo table for palindrome check
         return countPalindromes(s, 0, 0);
+    }
+    int exp(string &s, int i, int j) {
+        int cnt = 0;
+        while (i >= 0 && j < s.length() && s[i] == s[j]) {
+            cnt++;
+            i--;
+            j++;
+        }
+        return cnt;
+    }
+
+    int expand(string &s) {
+        int cnt = 0;
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            int oddans = exp(s, i, i);
+            cnt = cnt + oddans;
+            int evnans = exp(s, i, i + 1);
+            cnt = cnt + evnans;
+        }
+        return cnt;
+    }
+    int countSubstrings(string s) { 
+        // return mem(s); 
+        return expand(s);
     }
 };
