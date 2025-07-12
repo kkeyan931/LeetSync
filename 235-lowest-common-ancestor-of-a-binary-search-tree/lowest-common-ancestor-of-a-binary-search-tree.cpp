@@ -17,6 +17,12 @@ public:
         if(root->val == p->val || root->val == q->val) {
             return root;
         }
+        if(root->val < p->val && root->val < q->val) {
+            return lca(root->right, p, q);
+        }
+        if(root->val > p->val && root->val > q->val) {
+            return lca(root->left, p, q);
+        }
         TreeNode* left = lca(root->left, p, q);
         TreeNode* right = lca(root->right, p, q);
 
