@@ -8,7 +8,10 @@ public:
 
         int i = 0;
         while (i < nums.size() - 2) {
-            while(i > 0 && i < nums.size() - 2 && nums[i] == nums[i - 1]) {
+            if(nums[i] > 0) {
+                break;
+            }
+            while (i > 0 &&  i < nums.size() - 2 && nums[i] == nums[i - 1]) {
                 i++;
             }
             int j = i + 1;
