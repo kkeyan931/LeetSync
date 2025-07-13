@@ -2,6 +2,13 @@ class Solution {
 public:
     vector<int> smallestRange(vector<vector<int>>& nums) {
 
+        /*
+            1. Break the problem into small problem (only two list)
+            2. Find a solution for the small problem (two pointers)
+            3. Apply the learning to the large problem (multi pointers)
+            4. optimize the solution (priority_queue)
+        */
+
         int n = nums.size();
 
         vector<int> pointers(n, 0);
