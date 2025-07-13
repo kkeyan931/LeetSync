@@ -19,10 +19,19 @@ public:
 
                 if (sum > target) {
                     k--;
+                    while (k > j && nums[k] == nums[k + 1]) {
+                        k--;
+                    }
                 } else {
                     j++;
+                    while (j < k && nums[j] == nums[j - 1]) {
+                        j++;
+                    }
                 }
-                if(abs(sum - target) < mini) {
+                if (sum == target) {
+                    return target;
+                }
+                if (abs(sum - target) < mini) {
                     ans = sum;
                     mini = abs(sum - target);
                 }
