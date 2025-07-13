@@ -33,15 +33,11 @@ public:
             }
             temp = temp->next;
         }
-        while(ptr1) {
+        if(ptr1) {
             temp->next = ptr1;
-            ptr1 = ptr1->next;
-            temp = temp->next;
         }
-        while(ptr2) {
+        if(ptr2) {
             temp->next = ptr2;
-            ptr2 = ptr2->next;
-            temp = temp->next;
         }
         return tempHead->next;
     }
