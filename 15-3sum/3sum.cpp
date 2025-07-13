@@ -1,37 +1,39 @@
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& arr) {
-        
-        vector<vector<int>> ans;
-        int n = arr.size();
-        sort(arr.begin(), arr.end());
-        for (int i = 0; i < n && arr[i]<=0; i++) {
-            //remove duplicates:
-            if (i != 0 && arr[i] == arr[i - 1]) continue;
+    vector<vector<int>> threeSum(vector<int>& nums) {
 
-            //moving 2 pointers:
+        sort(nums.begin(), nums.end());
+
+        vector<vector<int>> result;
+
+        int i = 0;
+        while (i < nums.size() - 2) {
+            while(i > 0 && i < nums.size() - 2 && nums[i] == nums[i - 1]) {
+                i++;
+            }
             int j = i + 1;
-            int k = n - 1;
+            int k = nums.size() - 1;
+
             while (j < k) {
-                int sum = arr[i] + arr[j] + arr[k];
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if (sum == 0) {
+                    result.push_back({nums[i], nums[j], nums[k]});
+                }
                 if (sum < 0) {
                     j++;
-                }
-                else if (sum > 0) {
+                    while (j < k && nums[j] == nums[j - 1]) {
+                        j++;
+                    }
+                } else {
                     k--;
-                }
-                else {
-                    vector<int> temp = {arr[i], arr[j], arr[k]};
-                    ans.push_back(temp);
-                    j++;
-                    k--;
-                    //skip the duplicates:
-                    while (j < k && arr[j] == arr[j - 1]) j++;
-                    while (j < k && arr[k] == arr[k + 1]) k--;
+                    while (k > j && nums[k] == nums[k + 1]) {
+                        k--;
+                    }
                 }
             }
+            i++;
         }
-        return ans;
-            
+        return result;
     }
 };
