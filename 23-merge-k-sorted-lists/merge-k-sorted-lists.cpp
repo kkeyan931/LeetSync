@@ -42,12 +42,13 @@ public:
         return tempHead->next;
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        
-        ListNode* temp = new ListNode(INT_MIN);
-        ListNode* tempHead = temp;
-        for(ListNode* list : lists) {
-            temp = merge(temp, list);
+        int amount = lists.size();
+        int interval = 1;
+        while (interval < amount) {
+            for (int i = 0; i < amount - interval; i += interval * 2)
+                lists[i] = merge(lists[i], lists[i + interval]);
+            interval *= 2;
         }
-        return tempHead->next;
+        return amount > 0 ? lists[0] : NULL;
     }
 };
