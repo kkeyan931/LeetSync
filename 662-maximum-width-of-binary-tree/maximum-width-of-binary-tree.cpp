@@ -36,10 +36,10 @@ public:
                 }
 
                 if (node->left) {
-                    q.push({node->left, (2ll * c) + 1});
+                    q.push({node->left, (2ll * c)});
                 }
                 if (node->right) {
-                    q.push({node->right, (2ll * c) + 2});
+                    q.push({node->right, (2ll * c) + 1});
                 }
             }
             maxi = max((unsigned long long int)maxi, (end - start) + 1);
