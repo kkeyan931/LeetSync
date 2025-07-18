@@ -1,29 +1,27 @@
 class Solution {
 public:
-    char toLowerCase(char ch) {
-        if (ch >= 'A' && ch <= 'Z') {
-            return ch + ('a' - 'A');
-        }
-        return ch;
-    }
-    string pre(string s) {
-        string str = "";
-        for(int i=0;i<s.size();++i) {
-            if((s[i]>='A' && s[i]<='Z') || (s[i]>='a' && s[i]<='z')) str += toLowerCase(s[i]);
-            if(s[i]>='0' && s[i]<='9') str+=s[i];
-        }
-        return str;
-    }
+    bool isPal(string s) {
+        int i = 0;
+        int j = s.size() - 1;
 
-    bool rec(string &s, int start, int end) {
-        if(start>=end) return true;
-
-        if(s[start] != s[end]) return false;
-        return rec(s, start+1, end-1);
+        while(i <= j) {
+            if(s[i++] != s[j--]) {
+                return false;
+            }
+        }
+        return true;
     }
     bool isPalindrome(string s) {
-        s = pre(s);
-        // memory limit reached
-        return rec(s, 0, s.size()-1);
+        
+        stringstream ss;
+
+        for(auto ch : s) {
+            if((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >='0' && ch <='9')) {
+                ss << ch;
+            }
+        }
+        string s1 = ss.str();
+        transform(s1.begin(), s1.end(), s1.begin(), ::tolower);
+        return isPal(s1);
     }
 };
