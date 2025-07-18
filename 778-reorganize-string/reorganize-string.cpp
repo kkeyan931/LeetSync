@@ -1,45 +1,38 @@
 class Solution {
 public:
-    string solution1(string s) {
-        priority_queue<vector<int>> pq;
+    string reorganizeString(string s) {
+
+        int n = s.size();
 
         unordered_map<char, int> umap;
 
         for (auto ch : s) {
             umap[ch]++;
-        }
-
-        int maxi = 1;
-        for (auto [key, count] : umap) {
-            pq.push({count, key});
-            maxi = max(maxi, count);
-        }
-
-        if (maxi > (s.size() + 1) / 2) {
-            return "";
-        }
-
-        string result = "";
-        while (!pq.empty()) {
-            auto first = pq.top();
-            pq.pop();
-
-            if (result.empty() || first[1] != result.back()) {
-                result += char(first[1]);
-                if (--first[0] > 0) {
-                    pq.push(first);
-                }
-            } else {
-                auto second = pq.top();
-                pq.pop();
-                result += char(second[1]);
-                if (--second[0] > 0) {
-                    pq.push(second);
-                }
-                pq.push(first);
+            if (umap[ch] > (n + 1) / 2) {
+                return "";
             }
         }
-        return result;
+        priority_queue<pair<int, char>> pq;
+
+        for (auto [ch, count] : umap) {
+            pq.push({count, ch});
+        }
+        vector<char> result(n);
+
+        int i = 0;
+        while (!pq.empty()) {
+            auto [count, ch] = pq.top();
+            pq.pop();
+            while (count--) {
+                result[i] = ch;
+                i += 2;
+
+                if (i >= n) {
+                    i = 1;
+                }
+            }
+        }
+        string str(result.begin(), result.end());
+        return str;
     }
-    string reorganizeString(string s) { return solution1(s); }
 };
