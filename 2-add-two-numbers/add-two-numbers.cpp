@@ -17,7 +17,6 @@ public:
 
         int carry = 0;
         while(l1 || l2) {
-
             int sum = 0;
             sum += l1 ? l1->val : 0;
             sum += l2 ? l2->val : 0;
