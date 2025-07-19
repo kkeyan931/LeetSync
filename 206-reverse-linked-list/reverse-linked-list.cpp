@@ -10,46 +10,19 @@
  */
 class Solution {
 public:
-    ListNode* usingTracker(ListNode* head) {
-        
-        if(head == NULL || head->next == NULL) return head;
-
-        unordered_map<ListNode*, ListNode*> tracker;
-        
-        ListNode* back = head;
-        ListNode* front = head->next;
-        while(front != NULL) {
-            tracker[front] = back;
-            front = front->next;
-            back = back->next;
-        }
-        
-        ListNode* newHead = back;
-
-        while(back != head) {
-            back->next = tracker[back];
-            back = tracker[back];
-        }
-        back->next = NULL;
-        return newHead;
-    }
-    ListNode* usingTwoPointers(ListNode* head) {
-        if(head == NULL || head->next == NULL) return head;
-
-        ListNode* fast = head;
-        ListNode* slow = NULL;
-
-        while(fast != NULL) {
-            head = fast->next;
-            fast->next = slow;
-            slow = fast;
-            fast = head;
-        }
-
-        return slow;
-    }
     ListNode* reverseList(ListNode* head) {
-        // return usingTracker(head);
-        return usingTwoPointers(head);
+        if(head == nullptr) {
+            return head;
+        }
+        ListNode* prev = nullptr;
+        ListNode* next = head;
+        
+        while(next) {
+            ListNode* nextNext = next->next;
+            next->next = prev;
+            prev = next;
+            next = nextNext;
+        }
+        return prev;
     }
 };
