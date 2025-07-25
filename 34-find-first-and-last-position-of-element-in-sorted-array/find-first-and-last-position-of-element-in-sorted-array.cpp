@@ -1,32 +1,47 @@
 class Solution {
 public:
+    int lowerBound(vector<int>& nums, int target) {
+        int n = nums.size();
+        int low = 0;
+        int high = nums.size() - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (nums[mid] >= target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
+
+    int upperBound(vector<int>& nums, int target) {
+        int n = nums.size();
+        int low = 0;
+        int high = nums.size() - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (nums[mid] > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
+
     vector<int> searchRange(vector<int>& nums, int target) {
         int n = nums.size();
-        int start = 0, end = n-1;
+        int lb = lowerBound(nums, target);
+        int ub = upperBound(nums, target);
 
-        while(start<=end) {
-            int mid = start + ((end-start)/2);
-            if(nums[mid] == target) {
-                int ptr1 = mid, ptr2 = mid;
-                while(ptr1>=0) {
-                    if(nums[ptr1]==target) {
-                        ptr1--;
-                        continue;
-                    }
-                    break;
-                }
-                while(ptr2<=n-1) {
-                    if(nums[ptr2]==target) {
-                        ptr2++;
-                        continue;
-                    }
-                    break;
-                }
-                return {ptr1+1, ptr2-1};
-            } 
-            else if(nums[mid]<target) start = mid+1;
-            else end = mid-1;
+        if (lb == n || nums[lb] != target) {
+            return {-1, -1};
         }
-        return {-1, -1};
+        return {lb, ub - 1};
     }
 };
