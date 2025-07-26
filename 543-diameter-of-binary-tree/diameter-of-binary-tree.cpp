@@ -20,16 +20,32 @@ public:
         int right = 1 + height(root->right);
         return max(left, right);
     }
-    int diameterOfBinaryTree(TreeNode* root) {
+    int solution1(TreeNode* root) {
         if (root == nullptr)
             return 0;
 
         int lheight = height(root->left);
         int rheight = height(root->right);
 
-        int ldiameter = diameterOfBinaryTree(root->left);
-        int rdiameter = diameterOfBinaryTree(root->right);
+        int ldiameter = solution1(root->left);
+        int rdiameter = solution1(root->right);
 
         return max(lheight + rheight, max(ldiameter, rdiameter));
+    }
+    int diameter = 0;
+    int solution2(TreeNode* root) {
+        if(root == nullptr) {
+            return -1;
+        }
+        int left = solution2(root->left);
+        int right = solution2(root->right);
+
+        diameter = max(diameter, left + right + 2);
+
+        return max(left, right) + 1;
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        solution2(root);
+        return diameter;
     }
 };
