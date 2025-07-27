@@ -17,7 +17,7 @@ public:
         }
     }
     vector<string> letterCombinations(string digits) {
-        if(digits.size() == 0) {
+        if (digits.size() == 0) {
             return {};
         }
         unordered_map<char, string> umap = {
