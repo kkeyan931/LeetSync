@@ -134,10 +134,10 @@ public:
         }
 
         int count = 0;
-        for(int i = 0; i < m * n; ++i) {
+        for (int i = 0; i < m * n; ++i) {
             int row = i / n;
             int col = i % n;
-            if(i == dsu.findParent(i) && grid[row][col] == '1') {
+            if (i == dsu.findParent(i) && grid[row][col] == '1') {
                 count++;
             }
         }
