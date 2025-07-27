@@ -16,8 +16,9 @@ public:
 
             if (visited[nr][nc])
                 continue;
-            
-            if(heights[row][col] > heights[nr][nc]) continue;
+
+            if (heights[row][col] > heights[nr][nc])
+                continue;
 
             dfs(heights, nr, nc, visited);
         }
