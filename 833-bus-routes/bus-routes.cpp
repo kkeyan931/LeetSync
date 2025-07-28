@@ -2,55 +2,55 @@ class Solution {
 public:
     int numBusesToDestination(vector<vector<int>>& routes, int source,
                               int target) {
-        if (source == target)
+        if (source == target) {
             return 0;
+        }
 
-        unordered_map<int, vector<int>> stopToBuses;
-        int n = routes.size();
-
-        // Step 1: Map stops to buses
-        for (int i = 0; i < n; ++i) {
-            for (int stop : routes[i]) {
-                stopToBuses[stop].push_back(i);
+        unordered_map<int, vector<int>> adjList;
+        // Create a map from the bus stop to all the routes that include this
+        // stop.
+        for (int route = 0; route < routes.size(); route++) {
+            for (auto stop : routes[route]) {
+                // Add all the routes that have this stop.
+                adjList[stop].push_back(route);
             }
         }
 
         queue<int> q;
-        unordered_set<int> visitedStops;
-        unordered_set<int> visitedBuses;
+        unordered_set<int> vis;
+        // Insert all the routes in the queue that have the source stop.
+        for (auto route : adjList[source]) {
+            q.push(route);
+            vis.insert(route);
+        }
 
-        q.push(source);
-        visitedStops.insert(source);
-
-        int busesTaken = 0;
-
-        // Step 2: BFS over stops
-        while (!q.empty()) {
+        int busCount = 1;
+        while (q.size()) {
             int size = q.size();
-            busesTaken++;
 
-            while (size--) {
-                int currentStop = q.front();
+            for (int i = 0; i < size; i++) {
+                int route = q.front();
                 q.pop();
 
-                for (int bus : stopToBuses[currentStop]) {
-                    if (visitedBuses.count(bus))
-                        continue;
-                    visitedBuses.insert(bus);
+                // Iterate over the stops in the current route.
+                for (auto stop : routes[route]) {
+                    // Return the current count if the target is found.
+                    if (stop == target) {
+                        return busCount;
+                    }
 
-                    for (int nextStop : routes[bus]) {
-                        if (nextStop == target)
-                            return busesTaken;
-
-                        if (!visitedStops.count(nextStop)) {
-                            visitedStops.insert(nextStop);
-                            q.push(nextStop);
+                    // Iterate over the next possible routes from the current
+                    // stop.
+                    for (auto nextRoute : adjList[stop]) {
+                        if (!vis.count(nextRoute)) {
+                            vis.insert(nextRoute);
+                            q.push(nextRoute);
                         }
                     }
                 }
             }
+            busCount++;
         }
-
         return -1;
     }
 };
