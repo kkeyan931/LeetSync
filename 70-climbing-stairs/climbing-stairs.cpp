@@ -1,32 +1,51 @@
 class Solution {
 public:
-    int recHelper(int n, vector<int>& table) {
-        if (n <= 2)
-            return table[n - 1] = n;
-
-        if (table[n - 1] != 0)
-            return table[n - 1];
-
-        return table[n - 1] = recHelper(n - 1, table) + recHelper(n - 2, table);
-    }
-    int twoVarHelper(int n) {
-
-        if(n <= 2) return n;
-        int stepOne = 1;
-        int stepTwo = 2;
-
-        int result = 0;
-        for(int it=3; it<=n; it++) {
-
-            result = stepOne + stepTwo;
-            stepOne = stepTwo;
-            stepTwo = result;
+    int rec(vector<int> &dp, int n) {
+        if(n <= 2) {
+            return n;
         }
-        return result;
+        if(dp[n] != -1) {
+            return dp[n];
+        }
+        return dp[n] = rec(dp, n - 1) + rec(dp, n - 2);
+    }
+    int mem(int n) {
+        vector<int> dp(n + 1, -1);
+        return rec(dp, n);
+    }
+    int table(int n) {
+
+        if(n <= 2) {
+            return n;
+        }
+        
+        vector<int> dp(n + 1);
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for(int i = 3; i <= n; ++i) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+    int space(int n) {
+        if(n <= 2) {
+            return n;
+        }
+        int a = 1;
+        int b = 2;
+        int c;
+        for(int i = 3; i <= n; ++i) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return c;
     }
     int climbStairs(int n) {
-        vector<int> table(n, 0);
-        // return recHelper(n, table);
-        return twoVarHelper(n);
+        // return mem(n);
+        // return table(n);
+        return space(n);
     }
 };
