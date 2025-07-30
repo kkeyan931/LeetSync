@@ -1,27 +1,35 @@
 class Solution {
 public:
-    int rec(vector<int> &coins,vector<vector<int>> &dp, int index, int amount) {
+    int rec(vector<int> &coins, vector<vector<int>> &dp, int index, int amount) {
         if(amount == 0) {
             return 0;
         }
-        if(index < 0 || amount < 0) {
-            return INT_MAX - 1;
+        if(amount < 0) {
+            return INT_MAX;
+        }
+        if(index == coins.size()) {
+            return INT_MAX;
         }
 
         if(dp[index][amount] != -1) {
             return dp[index][amount];
         }
 
-        int inc = rec(coins, dp, index, amount - coins[index]) + 1;
-        int exc = rec(coins, dp, index - 1, amount);
+        int taken = rec(coins, dp, index, amount - coins[index]);
+        taken = taken == INT_MAX ? INT_MAX : taken + 1;
+        int notTaken = rec(coins, dp, index + 1, amount);
 
-        return dp[index][amount] = min(inc, exc);
+        return dp[index][amount] = min(taken, notTaken);
     }
-    int coinChange(vector<int>& coins, int amount) {
+    int mem(vector<int> &coins, int amount) {
+        
         int n = coins.size();
         vector<vector<int>> dp(n, vector<int>(amount + 1, -1));
 
-        int result = rec(coins, dp, n - 1, amount);
-        return result == INT_MAX - 1 ? -1 : result;
+        int result = rec(coins, dp, 0, amount);
+        return result == INT_MAX ? -1 : result;
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        return mem(coins, amount);
     }
 };
