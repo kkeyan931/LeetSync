@@ -30,7 +30,7 @@ public:
         dp.assign(n, vector<int>(n, -1)); // Memo table for palindrome check
         return countPalindromes(s, 0, 0);
     }
-    int exp(string &s, int i, int j) {
+    int exp(string& s, int i, int j) {
         int cnt = 0;
         while (i >= 0 && j < s.length() && s[i] == s[j]) {
             cnt++;
@@ -40,7 +40,7 @@ public:
         return cnt;
     }
 
-    int expand(string &s) {
+    int expand(string& s) {
         int cnt = 0;
         int n = s.length();
         for (int i = 0; i < n; i++) {
@@ -51,8 +51,8 @@ public:
         }
         return cnt;
     }
-    int countSubstrings(string s) { 
-        // return mem(s); 
+    int countSubstrings(string s) {
+        // return mem(s);
         return expand(s);
     }
 };
