@@ -8,42 +8,37 @@
  */
 class Solution {
 public:
-    
-    bool twoRabbit(ListNode *head) {
+    bool twoRabbit(ListNode* head) {
 
-        ListNode *slow = head;
-        ListNode *fast = head;
+        ListNode* slow = head;
+        ListNode* fast = head;
 
-        while (slow != NULL && fast != NULL && slow->next != NULL && fast->next != NULL) {
+        while (fast && fast->next) {
             slow = slow->next;
-            fast = fast->next;
-            if(fast != NULL && fast->next != NULL) {
-                fast = fast->next;
-            } else {
-                return false;
-            }
-            if(slow == fast) return true;
+            fast = fast->next->next;
+            if (slow == fast)
+                return true;
         }
         return false;
     }
 
-    bool usingMap(ListNode *head) {
-        
-        if(head == NULL) return false;
+    bool usingMap(ListNode* head) {
+
+        if (head == NULL)
+            return false;
 
         unordered_map<ListNode*, bool> tracker;
 
-        while(head != NULL) {
-            if(tracker[head] == true) return true;
+        while (head != NULL) {
+            if (tracker[head] == true)
+                return true;
             tracker[head] = true;
             head = head->next;
         }
         return false;
-
-
     }
-    bool hasCycle(ListNode *head) {
-        // return twoRabbit(head);
-        return usingMap(head);
+    bool hasCycle(ListNode* head) {
+        return twoRabbit(head);
+        // return usingMap(head);
     }
 };
