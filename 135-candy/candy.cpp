@@ -1,7 +1,6 @@
 class Solution {
 public:
-    int candy(vector<int>& ratings) {
-
+    int brute(vector<int>& ratings) {
         int n = ratings.size();
 
         vector<int> left(n);
@@ -33,5 +32,45 @@ public:
         }
 
         return sum;
+    }
+    int optimal(vector<int>& ratings) {
+
+        int n = ratings.size();
+
+        int sum = 1;
+        int i = 1;
+
+        while (i < n) {
+
+            while (i < n && ratings[i - 1] == ratings[i]) {
+                sum += 1;
+                i++;
+            }
+
+            int peek = 1;
+
+            while (i < n && ratings[i] > ratings[i - 1]) {
+                peek++;
+                sum += peek;
+                i++;
+            }
+
+            int down = 1;
+
+            while (i < n && ratings[i] < ratings[i - 1]) {
+                sum += down;
+                down++;
+                i++;
+            }
+
+            if (down > peek) {
+                sum += (down - peek);
+            }
+        }
+        return sum;
+    }
+    int candy(vector<int>& ratings) { 
+        // return brute(ratings); 
+        return optimal(ratings);
     }
 };
