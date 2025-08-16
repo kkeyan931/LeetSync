@@ -10,7 +10,7 @@ public:
             return false;
         }
 
-        if (startNode == endNode && adjList.find(startNode) != adjList.end()) {
+        if (startNode == endNode) {
             queryAns = runningProduct;
             return true;
         }
