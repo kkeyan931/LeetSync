@@ -1,8 +1,8 @@
-struct ListNodee {
-    ListNodee *next, *prev;
+struct Node {
+    Node *next, *prev;
     int key, value, freq;
 
-    ListNodee(int key, int value) : key(key), value(value) {
+    Node(int key, int value) : key(key), value(value) {
         next = nullptr;
         prev = nullptr;
         freq = 1;
@@ -10,42 +10,43 @@ struct ListNodee {
 };
 
 struct List {
-    ListNodee *head, *tail;
+    Node *head, *tail;
     int size;
     List() {
-        head = new ListNodee(-1, -1);
-        tail = new ListNodee(-1, -1);
+        head = new Node(-1, -1);
+        tail = new Node(-1, -1);
         head->next = tail;
         tail->prev = head;
         size = 0;
     }
 
-    void addFront(ListNodee* node) {
-        ListNodee* nextNode = head->next;
+    void addFront(Node* node) {
+        Node* nextNode = head->next;
         node->next = nextNode;
         head->next = node;
         nextNode->prev = node;
         node->prev = head;
         size++;
     }
-    ListNodee* removeTail() {
-        ListNodee* deleteNode = tail->prev;
-        ListNodee* prevNode = deleteNode->prev;
+    Node* removeTail() {
+        Node* deleteNode = tail->prev;
+        Node* prevNode = deleteNode->prev;
         prevNode->next = tail;
         tail->prev = prevNode;
         size--;
         return deleteNode;
     }
-    void removeNode(ListNodee* node) {
-        ListNodee* nextNode = node->next;
-        ListNodee* prevNode = node->prev;
+    void removeNode(Node* node) {
+        Node* nextNode = node->next;
+        Node* prevNode = node->prev;
         nextNode->prev = prevNode;
         prevNode->next = nextNode;
         size--;
     }
     ~List() {
         // clean dummy nodes; real nodes are managed by cache
-        delete head; delete tail;
+        delete head;
+        delete tail;
     }
 };
 class LFUCache {
@@ -56,16 +57,17 @@ public:
         if (nodeMap.find(key) == nodeMap.end()) {
             return -1;
         }
-        ListNodee* node = nodeMap[key];
+        Node* node = nodeMap[key];
         upgradeNode(node);
 
         return node->value;
     }
 
     void put(int key, int value) {
-        if (capacity == 0) return;
+        if (capacity == 0)
+            return;
         if (nodeMap.find(key) != nodeMap.end()) {
-            ListNodee* node = nodeMap[key];
+            Node* node = nodeMap[key];
             node->value = value;
             upgradeNode(node);
             return;
@@ -73,16 +75,16 @@ public:
 
         if (this->capacity == nodeMap.size()) {
             List* list = freqMap[minFreq];
-            ListNodee *node = list->removeTail();
+            Node* node = list->removeTail();
             nodeMap.erase(node->key);
             delete node;
-            if(list->size == 0) {
+            if (list->size == 0) {
                 freqMap.erase(minFreq);
                 delete list;
             }
         }
 
-        ListNodee* newNode = new ListNodee(key, value);
+        Node* newNode = new Node(key, value);
         minFreq = 1;
         if (freqMap.find(1) == freqMap.end()) {
             freqMap[1] = new List();
@@ -95,8 +97,8 @@ private:
     int capacity;
     int minFreq = 1;
     unordered_map<int, List*> freqMap;
-    unordered_map<int, ListNodee*> nodeMap;
-    void upgradeNode(ListNodee* node) {
+    unordered_map<int, Node*> nodeMap;
+    void upgradeNode(Node* node) {
         int oldFreq = node->freq;
         List* oldList = freqMap[oldFreq];
 
@@ -104,7 +106,7 @@ private:
 
         if (oldList->size == 0) {
             freqMap.erase(oldFreq);
-            if(minFreq == oldFreq) {
+            if (minFreq == oldFreq) {
                 minFreq = minFreq + 1;
             }
         }
