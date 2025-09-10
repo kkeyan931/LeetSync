@@ -15,19 +15,21 @@ public:
         }
         return low;
     }
-    int rec(vector<vector<int>>& events, vector<vector<int>> &dp, int index, int k) {
+    int rec(vector<vector<int>>& events, vector<vector<int>>& dp, int index,
+            int k) {
         if (index == events.size()) {
             return 0;
         }
         if (k == 0) {
             return 0;
         }
-        if(dp[index][k] != -1) {
+        if (dp[index][k] != -1) {
             return dp[index][k];
         }
 
-        int pick = events[index][2] +
-                   rec(events, dp, getNextIndex(events, events[index][1]), k - 1);
+        int pick =
+            events[index][2] +
+            rec(events, dp, getNextIndex(events, events[index][1]), k - 1);
         int notPick = rec(events, dp, index + 1, k);
 
         return dp[index][k] = max(pick, notPick);
@@ -38,5 +40,12 @@ public:
         vector<vector<int>> dp(events.size(), vector<int>(k + 1, -1));
         return rec(events, dp, 0, k);
     }
-    int maxValue(vector<vector<int>>& events, int k) { return mem(events, k); }
+    int maxValue(vector<vector<int>>& events, int k) {
+        /*
+            1. sort based on the start time.
+            2. use pick or not pick DP
+            3. use binary-search to get the next index
+        */
+        return mem(events, k);
+    }
 };
