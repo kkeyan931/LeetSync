@@ -1,38 +1,38 @@
 class Solution {
 public:
     bool kahnAlgo(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int, vector<int>> umap;
-        vector<int> inDegree(numCourses);
-        queue<int> q;
+        vector<vector<int>> adjList(numCourses);
+        vector<int> indegree(numCourses, 0);
 
-        for (auto& p : prerequisites) {
-            umap[p[1]].push_back(p[0]);
+        for (auto& prerequisite : prerequisites) {
+            int course = prerequisite[0];
+            int preCourse = prerequisite[1];
+
+            adjList[preCourse].push_back(course);
+            indegree[course]++;
         }
 
-        for (int i = 0; i < numCourses; ++i) {
-            for (auto v : umap[i]) {
-                inDegree[v]++;
+        queue<int> courseQueue;
+
+        for (int course = 0; course < numCourses; ++course)
+            if (indegree[course] == 0) {
+                courseQueue.push(course);
             }
-        }
-        for (int i = 0; i < numCourses; ++i) {
-            if (inDegree[i] == 0) {
-                q.push(i);
-            }
-        }
-        int count = 0;
-        while (!q.empty()) {
-            int u = q.front();
-            q.pop();
-            count++;
 
-            for (auto v : umap[u]) {
-                inDegree[v]--;
-                if (inDegree[v] == 0) {
-                    q.push(v);
+        int visitedCourse = 0;
+        while (!courseQueue.empty()) {
+
+            int currentCourse = courseQueue.front();
+            courseQueue.pop();
+            visitedCourse++;
+
+            for (int nextCourse : adjList[currentCourse]) {
+                if (--indegree[nextCourse] == 0) {
+                    courseQueue.push(nextCourse);
                 }
             }
         }
-        return count == numCourses;
+        return visitedCourse == numCourses;
     }
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         return kahnAlgo(numCourses, prerequisites);
