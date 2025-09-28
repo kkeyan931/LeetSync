@@ -55,7 +55,7 @@ public:
 
             area = heights[i] * (nse[i] - pse[i] - 1);
 
-            largestArea = max(largestArea, area);
+            largestArea = max(largestArea, abs(area));
         }
 
         return largestArea;
